@@ -1,0 +1,556 @@
+<html>
+<head>
+
+    <title>Speed Test</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/script.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    </head>
+
+
+    <body>
+    <div class="Back">
+        <div class="heading">
+
+        <h1>Spot Speed study</h1>
+        </div>
+        <div class="box1 ">
+        <div class="leftp">
+            <h1 style="text-align: center; color: black;font-size: 25px;font-weight: bolder;letter-spacing: 1px;"><u>Theory</u></h1>
+            <p  style="color: black;font-size: 22px;font-weight: bolder;letter-spacing: 1px;text-align: left; " >Spot speed is referred to as the instantaneous speed of a vehicle at a point or cross section; however there are two distinctly different methods of determination of spot speeds.<br><br>
+
+In the first method, the time, t (sec) taken by the vehicle to travel a short distance, d (m) is determined. Therefore the speed, v = (d/t) m/sec.<br><br>
+
+In the second method, the instantaneous speed is measured by a pre-calibrated radar equipment which displays or records the speed in desired units, such as kmph.</p>
+            
+
+            </div>
+        <div class="rightp">
+
+            <div class="right1">
+
+            </div>
+
+            <div class="right2"  style="text-align: center">
+                
+                <h1 style="margin: auto;color: white;text-align: center;padding: 20px;padding-top: 60px;">Measuring speed of car through stopwatch method.</h1><br>
+                
+                <button class="button Btn1"  onclick="fullscreen()" >Start Simulator</button>
+
+            </div>
+
+
+            <div class="right3">
+
+
+
+            </div>
+
+            <div class="right4" style="text-align: center">
+                <h1 style="margin: auto;color: white;text-align: center;padding: 20px;padding-top: 60px;">Measuring the speed of a Car through Radar gun. </h1><br>
+                
+                <button class="button Btn1"  onclick="fullscreen2()" >Start Simulator</button>
+            </div>
+            </div>
+        </div>
+        </div>        
+        
+<div class="container1" id="cont1">
+
+        
+       
+        <div class="text">
+            <button class="button Btn1" style="float: left;background-color: red;margin-top: 15px;margin-left: 5px;" onclick="normal(); " >Back</button><p> Calculating speed with simple distance time method </p></div>
+
+        <div class="buttons">
+            <button id="startStop" class="Btn1" style="float: left; background-color: green; display: none;" onclick="startStop()" >Start</button>
+            <div class="Inputbox" id="Inputboxes" style="width: 600px; background-color: red; float: left; height: 60px; ">
+               
+                <div class="input1" style="width: 40%; background-color: aqua; float: left; height: 60px;">
+                    <form style="margin-top: 20px;">
+                        <label style="font-size: 20 px;font-weight: 700;" >Distance : </label>
+                         <input type="number" id="dist" style="height: 25px;">
+                    </form>
+                    
+                </div>
+                
+                <div class="input2" style="width: 60%; background-color: aqua; float: right; height: 60px;box-sizing: border-box">
+                    <div class="slider" style="width: 60%; float: left; height: 60px;margin-top: 20px">
+                     <label style="font-size: 20 px;font-weight: 700;" >Speed : </label> 
+                     <input type="range" id="slider" min="3" max="6" value="3" style="width: 50%;">
+                    </div>
+                    <button class="button Btn1" style="float: right;background-color: yellow;margin-left: 5px;" onclick="parameter()" >Submit</button>
+                    
+                </div>
+                
+            </div>
+            
+            <button id="reset" class="Btn1" style="float: right; background-color: red; display: none"  onclick="reset()">Restart</button>
+            
+            <button  class="Btn2" style="text-align: center; background-color: aqua"> Speed : <span id="speed"></span>
+            </button>
+            
+           
+            
+            
+        </div>
+        
+         <div class= "display" id="display">
+            00:00:00
+        </div>
+        
+        
+        <div class="contents">
+            <div class="mainbox">
+               <i class='fas fa-arrow-circle-up' style='margin-left: 30px; font-size:48px;color:darkblue;visibility: hidden'  id="icon1"></i>
+               <i class='fas fa-arrow-circle-up' style='margin-left: 300px;  font-size:48px;color:darkblue;visibility: hidden' id="icon2"></i>
+               <i class='fas fa-arrow-circle-up' style='margin-left: 100px;  font-size:48px;color:darkblue;visibility: visible' id="icon3"></i>
+               <i class='fas fa-arrow-circle-up' style='margin-left: 330px;  font-size:48px;color:darkblue;visibility: hidden' id="icon4"></i>
+               
+               
+                <p style="text-align: center; padding-top: 20px;font-weight: bold;font-size: 20px;">Distance travelled : <span id="dista"></span> meter</p>
+                <p style="text-align: center; padding-top: 5px;font-weight: bold;font-size: 20px;">Time Taken : <span id="time"></span> Seconds</p>
+                
+                <div class="error" id = "error" style="width: 100%; height: 50px; ">
+                    <p id="errors" style="font-weight: 700; font-size: 16px;text-align: center; color: red;padding-top: 15px; box-sizing: border-box;"> </p>
+                </div>
+                
+               <img src="images/start.png" class="start" style="height: 70px;width: 50px;">
+                <img src="images/End.png" class="end" style="height: 70px;width: 50px;">
+                <div class="path">
+                    <img id="car" src="images/car.png"  style="height: 100px;width: 130px;">
+                </div>
+            </div>
+        
+           <div class="road">
+               
+               <div class="distance">
+                   <p style="text-align: center;font-weight: 700;font-size: 20px;background-color: #a87332; display: inline-block;">Distance : <span id="dista1"></span> Meter</p>
+                   <i class="arrow right"></i>
+                   <i class="arrow left"></i>
+                </div>
+                
+                <div class="error" id = "instructions" style="width: 100%; height: 50px; margin-top: 60px;">
+                    <p id="instructions1" style="font-weight: 700; font-size: 30px;text-align: center; color: black;padding-top: 15px; box-sizing: border-box;"> Fill The Readings And Click on Submit. </p>
+                </div>
+            </div>
+        
+        </div>
+   
+   <div class="Graphname" style="margin-top: 5px; margin-bottom: 15px"><p>Observation Tables <br><span style="color: red; font-size: 10px;">*Note=First Fill table1 after the table1 details completed fill the table 2 taking reference from table 1</span></p></div> 
+
+   <!-- TAbles -->
+      <div class="table2">
+         <div class="leftbox">
+            <div class="headingbox1" style="padding-top: 10px; padding-bottom: 20px">TABLE 1 :  Fill the speed of car accordingly</div>
+            <div class="leftbox1">
+               <table style="width:100%">
+                  <tr>
+                     <th>Cars</th>
+                     <th>Speed</th>
+                  </tr>
+                  <tr>
+                     <td>Car1</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car2</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car3</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car4</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car5</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car6</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car7</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car8</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+               </table>
+            </div>
+            <div class="leftbox2">
+               <table style="width:100%">
+                  <tr>
+                     <th>Cars</th>
+                     <th>Speed</th>
+                  </tr>
+                  <tr>
+                     <td>Car9</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car10</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car11</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car12</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car13</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car14</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car15</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car16</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+
+         <div class="rightbox">
+            <div class="headingbox1" style="padding-bottom: 5px;padding-top: 5px;">TABLE 2 :  Speed Distribution table</div>
+            <table style="width:100%">
+               <tr>
+                  <th>Speed range,<br>kmph</th>
+                  <th>Mean speed,<br>kmph</th>
+                  <th>Frequency,<br>f</th>
+                  <th>Percent<br>frequency</th>
+               </tr>
+               <tr>
+                  <td>0-10</td>
+                  <td>5</td>
+                  <td><input class="inputss" id="f1" value="0" type="number"></td>
+                  <td><p id="f21">---<p></td>
+               </tr>
+               <tr>
+                  <td>10-20</td>
+                  <td>15</td>
+                  <td><input class="inputss" id="f2" value="0" type="number"></td>
+                  <td><p id="f22">---<p></td>
+               </tr>
+               <tr>
+                  <td>20-30</td>
+                  <td>25</td>
+                  <td><input class="inputss" id="f3" value="0" type="number"></td>
+                  <td><p id="f23">---<p></td>
+               </tr>
+               <tr>
+                  <td>30-40</td>
+                  <td>35</td>
+                  <td><input class="inputss" id="f4" value="0" type="number"></td>
+                  <td><p id="f24">---<p></td>
+               </tr>
+               <tr>
+                  <td>40-50</td>
+                  <td>45</td>
+                  <td><input class="inputss" id="f5" value="0" type="number"></td>
+                  <td><p id="f25">---<p></td>
+               </tr>
+               <tr>
+                  <td>50-60</td>
+                  <td>55</td>
+                  <td><input class="inputss" id="f6" value="0" type="number"></td>
+                  <td><p id="f26">---<p></td>
+               </tr>
+               <tr>
+                  <td>60-70</td>
+                  <td>65</td>
+                  <td><input class="inputss" id="f7" value="0" type="number"></td>
+                  <td><p id="f27">---<p></td>
+               </tr>
+               <tr>
+                  <td>70-80</td>
+                  <td>75</td>
+                  <td><input class="inputss" id="f8" value="0" type="number"></td>
+                  <td><p id="f28">---<p></td>
+               </tr>
+            </table>
+            <div class="graph">
+            <button class="graphb" onclick="graphs()">Make a Graph</button>
+            </div>
+         </div>
+
+      </div>
+
+      <br>
+       
+      <div class="Graphname"><p>Frequency Distribution Diagram Of spot speeds</p></div>
+
+       
+         <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+         <br>
+
+      <div class="Graphname" style="margin-top: 5px;font-size: 30px;"><p>The Modal Speed for the following observation is <span id="modal" style="color: red">---</span></p></div>   
+   <!-- tables end -->      
+
+</div>
+
+<div class="container2" id="cont2">
+
+        
+       
+        <div class="text">
+            <button class="button Btn1" style="float: left;background-color: red;margin-top: 15px;margin-left: 5px;" onclick="normal2()" >Back</button><p> Calculating speed with Radar Gun </p></div>
+
+        <div class="buttons">
+            <button id="startStop2" class="Btn1" style="float: left; background-color: green; display: none;" onclick="startStop2()" >Start</button>
+            <div class="Inputbox" id="Inputboxes2" style="width: 600px; background-color: red; float: left; height: 60px; ">
+               
+                <div class="input1" style="width: 40%; background-color: aqua; float: left; height: 60px;">
+                    <form style="margin-top: 20px;">
+                        <label style="font-size: 20 px;font-weight: 700;" >Distance : </label>
+                         <input type="number" id="dist2" style="height: 25px;">
+                    </form>
+                    
+                </div>
+                
+                <div class="input2" style="width: 60%; background-color: aqua; float: right; height: 60px;box-sizing: border-box">
+                    <div class="slider" style="width: 60%; float: left; height: 60px;margin-top: 20px">
+                     <label style="font-size: 20 px;font-weight: 700;" >Speed : </label> 
+                     <input type="range" id="slider2" min="3" max="6" value="3" style="width: 50%;">
+                    </div>
+                    <button class="button Btn1" style="float: right;background-color: yellow;margin-left: 5px;" onclick="parameter2()" >Submit</button>
+                    
+                </div>
+                
+            </div>
+            
+            <button id="reset2" class="Btn1" style="float: right; background-color: red; display: none"  onclick="reset2()">Restart</button>
+            
+            
+            
+            
+        </div>
+        
+         <div class= "display" id="speedgun">
+            ....
+        </div>
+        
+        
+        <div class="contents">
+            <div class="mainbox">
+               <i class='fas fa-arrow-circle-up' style='margin-left: 30px; font-size:48px;color:black; visibility: hidden'  id="icon12"></i>
+               
+               <i class='fas fa-arrow-circle-up' style='margin-left: 440px;  font-size:48px;color:black; visibility: visible' id="icon32"></i>
+               <i class='fas fa-arrow-circle-up' style='margin-left: 330px;  font-size:48px;color:black; visibility: hidden' id="icon42"></i>
+               
+               
+               
+                <p style="text-align: center; padding-top: 20px;font-weight: bold;font-size: 20px;">Distance travelled : <span id="dista2"></span> meter</p>
+                <p style="text-align: center; padding-top: 5px;font-weight: bold;font-size: 20px; display: none">Time Taken : <span id="time2"></span> Seconds</p>
+                
+                <div class="error" id = "error" style="width: 100%; height: 50px; ">
+                    <p id="errors2" style="font-weight: 700; font-size: 16px;text-align: center; color: red;padding-top: 15px; box-sizing: border-box;"> </p>
+                </div>
+                
+               <img src="images/Gun1.png" class="start" style="height: 55px;width: 65px;">
+                <img src="images/End.png" class="end" style="height: 70px;width: 50px;">
+                <div class="path">
+                    <img id="car2" src="images/car.png"  style="height: 100px;width: 130px;">
+                    <hr id="laser" style="width: 0px; height: 3px;  margin-top: 75px; float: left;margin-left: 14px; background-image: linear-gradient(to right, #b5240b , #e87407);border: 0px  ">
+                </div>
+            </div>
+        
+           <div class="road">
+               
+               <div class="distance">
+                   <p style="text-align: center;font-weight: 700;font-size: 20px;background-color: #a87332; display: inline-block;">Distance : <span id="dista12"></span> Meter</p>
+                   <i class="arrow right"></i>
+                   <i class="arrow left"></i>
+                </div>
+                
+                
+                 <div class="error" id = "instructions" style="width: 100%; height: 50px; margin-top: 60px;">
+                    <p id="instructions2" style="font-weight: 700; font-size: 30px;text-align: center; color: black;padding-top: 15px; box-sizing: border-box;"> Fill The Readings And Click on Submit. </p>
+                </div>
+            </div>
+        
+        </div>
+
+        <br>
+        <div class="Graphname" style="margin-top: 5px; margin-bottom: 15px"><p>Observation Tables<br><span style="color: red; font-size: 10px;">*Note=First Fill table1 after the table1 details completed fill the table 2 taking reference from table 1</span></p></div>       
+   
+   <!-- TAbles -->
+      <div class="table2">
+         <div class="leftbox">
+            <div class="headingbox1" style="padding-top: 10px; padding-bottom: 20px"> TABLE 1 : Fill the speed of car accordingly </div>
+            <div class="leftbox1">
+               <table style="width:100%">
+                  <tr>
+                     <th>Cars</th>
+                     <th>Speed</th>
+                  </tr>
+                  <tr>
+                     <td>Car1</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car2</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car3</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car4</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car5</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car6</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car7</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car8</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+               </table>
+            </div>
+            <div class="leftbox2">
+               <table style="width:100%">
+                  <tr>
+                     <th>Cars</th>
+                     <th>Speed</th>
+                  </tr>
+                  <tr>
+                     <td>Car9</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car10</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car11</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car12</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car13</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car14</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car15</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+                  <tr>
+                     <td>Car16</td>
+                     <td><input class="inputss" type="number"></td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+
+         <div class="rightbox">
+            <div class="headingbox1" style="padding-bottom: 5px;padding-top: 5px;"> TABLE 2  :  Speed Distribution table </div>
+            <table style="width:100%">
+               <tr>
+                  <th>Speed range,<br>kmph</th>
+                  <th>Mean speed,<br>kmph</th>
+                  <th>Frequency,<br>f</th>
+                  <th>Percent<br>frequency</th>
+               </tr>
+               <tr>
+                  <td>0-10</td>
+                  <td>5</td>
+                  <td><input class="inputss" id="f12" value="0" type="number"></td>
+                  <td><p id="f212">---<p></td>
+               </tr>
+               <tr>
+                  <td>10-20</td>
+                  <td>15</td>
+                  <td><input class="inputss" id="nan" value="0" type="number"></td>
+                  <td><p id="f222">---<p></td>
+               </tr>
+               <tr>
+                  <td>20-30</td>
+                  <td>25</td>
+                  <td><input class="inputss" id="f32" value="0" type="number"></td>
+                  <td><p id="f232">---<p></td>
+               </tr>
+               <tr>
+                  <td>30-40</td>
+                  <td>35</td>
+                  <td><input class="inputss" id="f42" value="0" type="number"></td>
+                  <td><p id="f242">---<p></td>
+               </tr>
+               <tr>
+                  <td>40-50</td>
+                  <td>45</td>
+                  <td><input class="inputss" id="f52" value="0" type="number"></td>
+                  <td><p id="f252">---<p></td>
+               </tr>
+               <tr>
+                  <td>50-60</td>
+                  <td>55</td>
+                  <td><input class="inputss" id="f62" value="0" type="number"></td>
+                  <td><p id="f262">---<p></td>
+               </tr>
+               <tr>
+                  <td>60-70</td>
+                  <td>65</td>
+                  <td><input class="inputss" id="f72" value="0" type="number"></td>
+                  <td><p id="f272">---<p></td>
+               </tr>
+               <tr>
+                  <td>70-80</td>
+                  <td>75</td>
+                  <td><input class="inputss" id="f82" value="0" type="number"></td>
+                  <td><p id="f282">---<p></td>
+               </tr>
+            </table>
+            <div class="graph">
+            <button class="graphb" onclick="graphs2()">Make a Graph</button>
+            </div>
+         </div>
+
+      </div>
+
+      <br>
+       
+      <div class="Graphname"><p>Frequency Distribution Diagram Of spot speeds</p></div>
+
+       
+         <canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
+         <br>
+
+      <div class="Graphname" style="margin-top: 5px;font-size: 30px;"><p>The Modal Speed for the following observation is <span id="modal2" style="color: red">______</span></p></div>   
+   <!-- tables end -->
+</div>
+</div>
+    </body>
+</html>
